@@ -1,21 +1,26 @@
-import http from 'http'
 import assert from 'assert'
+import axios from 'axios'
+import chai from 'chai'
+
+chai.should()
 
 import '../lib/server.js'
 
+const baseUrl = 'http://localhost:3000'
+
 describe('Node Server', () => {
 
-  it('should return 200', done => {
-    http.get('http://127.0.0.1:3000', res => {
-
-      assert.equal(200, res.statusCode)
-
-      res.setEncoding('utf8')
-      res.on("data", body => {
-        assert.equal("Hello World", body)
-        done()
+  it('ping should return 200', () => {
+    return axios.get(`${baseUrl}/ping`)
+      .then(response => {
+        response.status.should.equal(200)
+        response.data.should.equal('Ping OK!')
       })
-    })
+  })
+
+  it("should serve index.html", () => {
+    return axios.get(baseUrl)
+      .then(response => response.status.should.equal(200))
   })
 
 })
