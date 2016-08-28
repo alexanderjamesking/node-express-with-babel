@@ -24,6 +24,5 @@
     "build": "babel lib -d dist",
     "serve": "node dist/server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
