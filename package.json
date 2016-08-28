@@ -1,7 +1,11 @@
 {
-  "name": "node-frontend",
+  "name": "node-express-with-babel",
   "version": "0.0.1",
-  "description": "",
+  "description": "Node Express server with Babel",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alexanderjamesking/node-express-with-babel.git"
+  },
   "main": "server.js",
   "dependencies": {
     "express": "^4.14.0"
@@ -10,10 +14,12 @@
     "babel-cli": "^6.14.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-2": "^6.13.0",
+    "babel-register": "^6.14.0",
+    "mocha": "^3.0.2",
     "nodemon": "^1.10.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-register",
     "start": "nodemon lib/server.js --exec babel-node",
     "build": "babel lib -d dist",
     "serve": "node dist/server.js"
